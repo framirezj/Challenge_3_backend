@@ -2,6 +2,6 @@
 
 ¡Bienvenido a mi proyecto! 🚧
 
-![En construcción](https://github.com/tu_usuario/tu_repositorio/ruta/a/tu/imagen.png)
+![En construcción](https://content.imageresizer.com/images/memes/Double-arm-construction-worker-meme-1.jpg)
 
 Estamos trabajando arduamente para traerles algo increíble. ¡Estén atentos!
