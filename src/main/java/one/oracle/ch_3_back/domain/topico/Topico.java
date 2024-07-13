@@ -1,5 +1,6 @@
 package one.oracle.ch_3_back.domain.topico;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -23,6 +24,7 @@ public class Topico {
 
     private String titulo;
     private String mensaje;
+    @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
     private Boolean activo;
     private String autor;

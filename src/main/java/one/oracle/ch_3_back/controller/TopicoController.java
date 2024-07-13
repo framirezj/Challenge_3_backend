@@ -38,8 +38,10 @@ public class TopicoController {
         var topico = topicoRepository
                 .save(new Topico(dtoRegistroTopico));
 
+
         //convierte la entidad a DTO de salida
         var response = new DTORespuestaRegistroTopico(topico);
+
 
         //crea el url de acceso al topico registrado
         URI url = uriComponentsBuilder
