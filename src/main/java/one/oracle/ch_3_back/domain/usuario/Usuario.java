@@ -3,6 +3,7 @@ package one.oracle.ch_3_back.domain.usuario;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -21,15 +22,23 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
-    private String password;
+    private String user;
+    private String pass;
 
-
-    //metodos override de la interfaz, si especifico con otro nombre el atributo me solicitara mapear
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(new SimpleGrantedAuthority("ROLE_USUARIO"));
+    }
+
+    @Override
+    public String getPassword() {
+        return pass;
+    }
+
+    @Override
+    public String getUsername() {
+        return user;
     }
 
     @Override
@@ -51,8 +60,4 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
     }
-
-
-
-
 }

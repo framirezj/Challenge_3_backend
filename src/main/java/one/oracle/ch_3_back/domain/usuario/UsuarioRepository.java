@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     //metodo para la autenticacion de UserDetailsService
-    UserDetails findByUsername(String username);
+    UserDetails findByUser(String username);
 
 }
