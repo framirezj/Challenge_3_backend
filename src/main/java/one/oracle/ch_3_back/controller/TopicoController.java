@@ -2,16 +2,17 @@ package one.oracle.ch_3_back.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import one.oracle.ch_3_back.domain.topico.DTORegistroTopico;
-import one.oracle.ch_3_back.domain.topico.DTORespuestaRegistroTopico;
-import one.oracle.ch_3_back.domain.topico.Topico;
-import one.oracle.ch_3_back.domain.topico.TopicoRepository;
+import one.oracle.ch_3_back.domain.topico.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/topicos")
@@ -52,5 +53,19 @@ public class TopicoController {
         return ResponseEntity
                 .created(url)
                 .body(response);
+    }
+
+    //Los datos de los tópicos (título, mensaje, fecha de creación, estado, autor y curso)
+    // deben ser devueltos en el cuerpo de la respuesta, en formato JSON.
+
+    @GetMapping
+    public ResponseEntity<Page<DTORespuestaListadoTopicos>> getAllTopicos(
+            @PageableDefault(size = 10) Pageable pageable
+    ){
+
+        //obtener los topicos desde la base de datos, paginarlos y convertilos a DTO de salida.
+        return ResponseEntity.ok(topicoRepository.findAll(pageable)
+                .map(t -> new DTORespuestaListadoTopicos(t)));
+
     }
 }
