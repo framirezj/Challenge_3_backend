@@ -37,6 +37,7 @@ public class Topico {
         this.titulo = dtoRegistroTopico.titulo();
         this.mensaje = dtoRegistroTopico.mensaje();
         this.fechaCreacion = LocalDateTime.now();
+        this.activo = true;
         this.autor = dtoRegistroTopico.autor();
         this.curso = dtoRegistroTopico.curso();
     }

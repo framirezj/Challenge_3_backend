@@ -21,10 +21,13 @@ public class TopicoController {
     @Autowired
     private TopicoRepository topicoRepository;
 
+    /*
     @GetMapping
     public void hello(){
         System.out.println("Hello World");
     }
+    */
+
 
     //Los datos del tópico (título, mensaje, autor y curso)
     //deben ser enviados en el cuerpo de la solicitud, en formato JSON.
