@@ -28,7 +28,6 @@ public class TopicoController {
     }
     */
 
-
     //Los datos del tópico (título, mensaje, autor y curso)
     //deben ser enviados en el cuerpo de la solicitud, en formato JSON.
 
@@ -69,6 +68,16 @@ public class TopicoController {
         //obtener los topicos desde la base de datos, paginarlos y convertilos a DTO de salida.
         return ResponseEntity.ok(topicoRepository.findAll(pageable)
                 .map(DTORespuestaListadoTopicos::new));
+
+    }
+
+    //obtener topico por su ID
+    @GetMapping("/{id}")
+    public ResponseEntity<DTORespuestaTopicoPorId> getTopicoById(@PathVariable Long id){
+
+        //obtener el topico por el id, por referencia para traer la entidad
+        return ResponseEntity.ok(
+                new DTORespuestaTopicoPorId(topicoRepository.getReferenceById(id)));
 
     }
 }
