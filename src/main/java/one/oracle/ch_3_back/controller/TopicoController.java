@@ -68,7 +68,7 @@ public class TopicoController {
 
         //obtener los topicos desde la base de datos, paginarlos y convertilos a DTO de salida.
         return ResponseEntity.ok(topicoRepository.findAll(pageable)
-                .map(t -> new DTORespuestaListadoTopicos(t)));
+                .map(DTORespuestaListadoTopicos::new));
 
     }
 }
