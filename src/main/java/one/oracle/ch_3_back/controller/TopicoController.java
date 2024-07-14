@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/topicos")
@@ -78,6 +79,44 @@ public class TopicoController {
         //obtener el topico por el id, por referencia para traer la entidad
         return ResponseEntity.ok(
                 new DTORespuestaTopicoPorId(topicoRepository.getReferenceById(id)));
+
+    }
+
+    //actualizar un topico con id especifico
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DTORespuestaActualizarTopico> updateTopico(
+            @PathVariable Long id,
+            @RequestBody @Valid DTOActualizarTopico dtoActualizarTopico
+            ){
+
+        //verificar si existe el topico
+        Optional<Topico> topicoOptional = topicoRepository.findById(id);
+
+        if(topicoOptional.isPresent()){
+
+            //traer la entidad
+            var topico = topicoOptional.get();
+
+            //editar los cambios
+            topico.setTitulo(dtoActualizarTopico.titulo());
+            topico.setMensaje(dtoActualizarTopico.mensaje());
+            topico.setAutor(dtoActualizarTopico.autor());
+            topico.setCurso(dtoActualizarTopico.curso());
+
+            //guardar los cambios
+            topicoRepository.save(topico);
+
+            //respuesta
+            return ResponseEntity.ok(
+                    new DTORespuestaActualizarTopico(topico)
+            );
+
+        }else{
+            //en caso de no encontrar el id
+            return ResponseEntity.notFound().build();
+        }
+
 
     }
 }
