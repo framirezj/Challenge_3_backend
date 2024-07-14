@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -118,5 +117,22 @@ public class TopicoController {
         }
 
 
+    }
+
+
+
+    //eliminar un topico
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deleteTopico(@PathVariable Long id){
+
+        Optional<Topico> topico = topicoRepository.findById(id);
+
+        if(topico.isPresent()){
+            topicoRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 }
