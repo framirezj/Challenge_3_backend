@@ -2,7 +2,7 @@
 
 # ForoHub API
 
-![ForoHub Logo](path_to_logo_image)
+![Badge-Spring](https://github.com/user-attachments/assets/e2dec52f-b4f8-4b51-92e1-4eeac909f404)
 
 ## Descripción
 
