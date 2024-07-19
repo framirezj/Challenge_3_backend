@@ -11,7 +11,7 @@ public record DTORespuestaActualizarTopico(
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
         LocalDateTime fechaCreacion,
         Boolean activo,
-        String autor,
+        Long autor,
         String curso
 ) {
 
@@ -22,7 +22,7 @@ public record DTORespuestaActualizarTopico(
                 topico.getMensaje(),
                 topico.getFechaCreacion(),
                 topico.getActivo(),
-                topico.getAutor(),
+                topico.getAutor().getId(),
                 topico.getCurso()
 
 

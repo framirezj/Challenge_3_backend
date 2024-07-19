@@ -10,7 +10,7 @@ public record DTORegistroTopico(
         @NotNull
         String mensaje,
         @NotNull
-        String autor,
+        Long autorId,
         @NotNull
         String curso
 ) {

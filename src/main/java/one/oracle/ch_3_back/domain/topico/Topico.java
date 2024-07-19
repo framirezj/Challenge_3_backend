@@ -3,8 +3,12 @@ package one.oracle.ch_3_back.domain.topico;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+import one.oracle.ch_3_back.domain.respuesta.Respuesta;
+import one.oracle.ch_3_back.domain.usuario.Usuario;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Table(name = "topicos")
 @Entity(name = "Topico")
@@ -25,8 +29,14 @@ public class Topico {
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
     private Boolean activo;
-    private String autor;
     private String curso;
+
+    @ManyToOne
+    @JoinColumn(name = "autor_id")
+    private Usuario autor;
+
+    @OneToMany(mappedBy = "topico")
+    private Set<Respuesta> respuestas = new HashSet<>();
 
     //metodos
 
@@ -36,7 +46,7 @@ public class Topico {
         this.mensaje = dtoRegistroTopico.mensaje();
         this.fechaCreacion = LocalDateTime.now();
         this.activo = true;
-        this.autor = dtoRegistroTopico.autor();
+        //this.autor = dtoRegistroTopico.autorId();
         this.curso = dtoRegistroTopico.curso();
     }
 

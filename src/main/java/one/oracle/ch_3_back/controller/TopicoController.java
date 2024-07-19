@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import one.oracle.ch_3_back.domain.topico.*;
+import one.oracle.ch_3_back.domain.usuario.Usuario;
+import one.oracle.ch_3_back.domain.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +25,9 @@ public class TopicoController {
     @Autowired
     private TopicoRepository topicoRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     /*
     @GetMapping
     public void hello(){
@@ -39,21 +44,34 @@ public class TopicoController {
             @RequestBody @Valid DTORegistroTopico dtoRegistroTopico,
             UriComponentsBuilder uriComponentsBuilder){
 
-        //convierte DTO de topico y guarda
-        var topico = topicoRepository
-                .save(new Topico(dtoRegistroTopico));
+        //convierte DTO de topico
+        var topico = new Topico(dtoRegistroTopico);
+
+        //buscar autor para asignarlo al topico
+        Optional<Usuario> autor = usuarioRepository.findById(dtoRegistroTopico.autorId());
+
+            //comprobar si encontro al usuario
+            if(autor.isPresent()){
+                topico.setAutor(autor.get());
+            }else{
+                return ResponseEntity.notFound().build();
+            }
+
+        //guardar el topico una vez añadido el autor
+        var topicoGuardado = topicoRepository.save(topico);
 
 
         //convierte la entidad a DTO de salida
-        var response = new DTORespuestaRegistroTopico(topico);
+        var response = new DTORespuestaRegistroTopico(topicoGuardado);
 
 
         //crea el url de acceso al topico registrado
         URI url = uriComponentsBuilder
                 .path("/topicos/{id}")
                 .buildAndExpand(
-                        topico.getId()).toUri();
+                        topicoGuardado.getId()).toUri();
 
+        //salida lista
         return ResponseEntity
                 .created(url)
                 .body(response);
@@ -83,6 +101,7 @@ public class TopicoController {
 
     }
 
+    /*
     //actualizar un topico con id especifico
     @PutMapping("/{id}")
     @Transactional
@@ -120,6 +139,8 @@ public class TopicoController {
 
 
     }
+
+     */
 
 
 

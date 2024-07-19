@@ -11,7 +11,8 @@ public record DTORespuestaRegistroTopico(
          String mensaje,
          @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
          LocalDateTime fechaCreacion,
-         String autor,
+         Long autorId,
+         String autorNombre,
          String curso
 )
 {
@@ -22,7 +23,8 @@ public record DTORespuestaRegistroTopico(
                 topico.getTitulo(),
                 topico.getMensaje(),
                 topico.getFechaCreacion(),
-                topico.getAutor(),
+                topico.getAutor().getId(),
+                topico.getAutor().getUsername(),
                 topico.getCurso()
         );
     }
