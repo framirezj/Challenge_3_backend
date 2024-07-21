@@ -7,6 +7,7 @@ import one.oracle.ch_3_back.domain.usuario.Usuario;
 
 import java.time.LocalDateTime;
 
+//tengo un error aqui, porque la tabla tenia que nombrar como respuestas, me falto una S
 @Table(name = "respuestas")
 @Entity(name = "Respuesta")
 @Getter
@@ -35,4 +36,15 @@ public class Respuesta {
 
     private Boolean solucion;
 
+    public Respuesta(
+            DTORegistroRespuesta dtoRegistroRespuesta,
+            Topico topico,
+            Usuario autor) {
+
+        this.mensaje = dtoRegistroRespuesta.mensaje();
+        this.fechaCreacion = LocalDateTime.now();
+        this.topico = topico;
+        this.autor = autor;
+        this.solucion = false;
+    }
 }

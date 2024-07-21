@@ -12,6 +12,7 @@ public record DTORespuestaActualizarTopico(
         LocalDateTime fechaCreacion,
         Boolean activo,
         Long autor,
+        String autorNombre,
         String curso
 ) {
 
@@ -23,6 +24,7 @@ public record DTORespuestaActualizarTopico(
                 topico.getFechaCreacion(),
                 topico.getActivo(),
                 topico.getAutor().getId(),
+                topico.getAutor().getUsername(),
                 topico.getCurso()
 
 

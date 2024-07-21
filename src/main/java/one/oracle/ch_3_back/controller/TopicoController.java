@@ -101,7 +101,7 @@ public class TopicoController {
 
     }
 
-    /*
+
     //actualizar un topico con id especifico
     @PutMapping("/{id}")
     @Transactional
@@ -121,15 +121,15 @@ public class TopicoController {
             //editar los cambios
             topico.setTitulo(dtoActualizarTopico.titulo());
             topico.setMensaje(dtoActualizarTopico.mensaje());
-            topico.setAutor(dtoActualizarTopico.autor());
+            //topico.setAutor(dtoActualizarTopico.autorId());
             topico.setCurso(dtoActualizarTopico.curso());
 
             //guardar los cambios
-            topicoRepository.save(topico);
+            var topicoUpdated = topicoRepository.save(topico);
 
             //respuesta
             return ResponseEntity.ok(
-                    new DTORespuestaActualizarTopico(topico)
+                    new DTORespuestaActualizarTopico(topicoUpdated)
             );
 
         }else{
@@ -140,7 +140,7 @@ public class TopicoController {
 
     }
 
-     */
+
 
 
 

@@ -1,14 +1,13 @@
 package one.oracle.ch_3_back.domain.topico;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import one.oracle.ch_3_back.domain.respuesta.Respuesta;
 import one.oracle.ch_3_back.domain.usuario.Usuario;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "topicos")
 @Entity(name = "Topico")
@@ -36,7 +35,7 @@ public class Topico {
     private Usuario autor;
 
     @OneToMany(mappedBy = "topico")
-    private Set<Respuesta> respuestas = new HashSet<>();
+    private List<Respuesta> respuestas = new ArrayList<>();
 
     //metodos
 

@@ -8,8 +8,8 @@ public record DTOActualizarTopico(
         String titulo,
         @NotNull
         String mensaje,
-        @NotNull
-        String autor,
+
+        //Long autorId,
         @NotNull
         String curso
 
