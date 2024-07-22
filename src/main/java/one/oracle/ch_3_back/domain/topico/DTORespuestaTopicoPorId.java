@@ -8,10 +8,11 @@ public record DTORespuestaTopicoPorId(
         Long id,
         String titulo,
         String mensaje,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+        //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
         LocalDateTime fechaCreacion,
         Boolean activo,
         Long autor,
+        String autorNombre,
         String curso
 ) {
     public DTORespuestaTopicoPorId(Topico topico){
@@ -22,6 +23,7 @@ public record DTORespuestaTopicoPorId(
                 topico.getFechaCreacion(),
                 topico.getActivo(),
                 topico.getAutor().getId(),
+                topico.getAutor().getUsername(),
                 topico.getCurso()
         );
     }

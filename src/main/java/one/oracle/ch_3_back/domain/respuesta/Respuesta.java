@@ -42,7 +42,7 @@ public class Respuesta {
             Usuario autor) {
 
         this.mensaje = dtoRegistroRespuesta.mensaje();
-        this.fechaCreacion = LocalDateTime.now();
+        //this.fechaCreacion = LocalDateTime.now();
         this.topico = topico;
         this.autor = autor;
         this.solucion = false;

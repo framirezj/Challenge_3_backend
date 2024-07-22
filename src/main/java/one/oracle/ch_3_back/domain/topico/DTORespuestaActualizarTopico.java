@@ -8,7 +8,7 @@ public record DTORespuestaActualizarTopico(
         Long id,
         String titulo,
         String mensaje,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+        //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
         LocalDateTime fechaCreacion,
         Boolean activo,
         Long autor,

@@ -1,21 +1,17 @@
 package one.oracle.ch_3_back.domain.respuesta;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.time.LocalDateTime;
 
-public record DTORespuestaRegistroRespuesta(
+public record DTORespuestaListado(
         Long id,
         String mensaje,
-        //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
         LocalDateTime fecha,
         Long topicoId,
         Long autorId,
         String autorNombre
-
 ) {
 
-    public DTORespuestaRegistroRespuesta(Respuesta respuesta){
+    public DTORespuestaListado(Respuesta respuesta) {
         this(
                 respuesta.getId(),
                 respuesta.getMensaje(),
